@@ -4,6 +4,11 @@
       "name": "filename",
       "type": "java.lang.String",
       "description": "Description for filename, Docker use it."
+    },
+    {
+      "name": "app.logTriggerLevel",
+      "type": "java.lang.String",
+      "description": "Description for app.logTriggerLevel. Log level TRACE, DEBUG, INFO, WARN, ERROR."
     }
   ]
 }

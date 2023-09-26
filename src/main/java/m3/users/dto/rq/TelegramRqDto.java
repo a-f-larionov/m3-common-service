@@ -1,15 +1,15 @@
 package m3.users.dto.rq;
 
+
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 @SuperBuilder
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
-public class UserIdRqDto {
-    private Long userId;
+public class TelegramRqDto extends UserIdRqDto{
 }

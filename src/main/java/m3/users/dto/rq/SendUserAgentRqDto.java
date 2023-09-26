@@ -1,5 +1,6 @@
 package m3.users.dto.rq;
 
+
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -8,8 +9,9 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
-public class UserIdRqDto {
-    private Long userId;
+public class SendUserAgentRqDto extends UserIdRqDto {
+
+    private String userAgentString;
 }

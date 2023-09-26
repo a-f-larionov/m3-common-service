@@ -8,7 +8,6 @@ spring:
   kafka:
     bootstrap-servers: kafka:9092
 
-socnet:
-  vk:
-    appId: 123
-    secretKey: secretKey
+logging:
+  level:
+    root: info

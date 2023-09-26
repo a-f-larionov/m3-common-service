@@ -5,8 +5,7 @@ import lombok.Getter;
 @Getter
 public enum ErrorCodes {
 
-    //EXAMPLE_ERROR(1, "Пример сообщения об ошибке");
-    ;
+    VALIDATE_ERROR(1, "Ошибка валидации");
 
     private Integer code;
     private String message;

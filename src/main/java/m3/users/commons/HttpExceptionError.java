@@ -5,10 +5,10 @@ import lombok.Getter;
 @Getter
 public class HttpExceptionError extends RuntimeException {
 
-    private ErrorCodes errorCodes;
+    private final ErrorCodes errorCode;
 
-    public HttpExceptionError(ErrorCodes errorCodes) {
-        super(errorCodes.getMessage());
-        this.errorCodes = errorCodes;
+    public HttpExceptionError(ErrorCodes errorCode) {
+        super(errorCode.getMessage());
+        this.errorCode = errorCode;
     }
 }
