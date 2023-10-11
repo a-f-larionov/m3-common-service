@@ -12,3 +12,8 @@ spring:
 logging:
   level:
     root: info
+
+alerter:
+  telegram:
+    chatId: ${TELEGRAM_CHAT_ID}
+    token: ${TELEGRAM_TOKEN}
