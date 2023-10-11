@@ -52,3 +52,4 @@ public class TelegramAppender extends AppenderBase<ILoggingEvent> {
             throw new RuntimeException(e);
         }
     }
+}
