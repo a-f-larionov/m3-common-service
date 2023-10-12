@@ -15,13 +15,11 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Component;
 
-
 @AllArgsConstructor
 @Component
 @Slf4j
 @KafkaListener(topics = "topic-common", groupId = "2",
         errorHandler = "validationErrorHandler")
-//        containerFactory = "kafkaJsonListenerContainerFactory")
 public class KafkaListenerHandlers {
 
     private final CommonMapper commonMapper;
@@ -34,7 +32,7 @@ public class KafkaListenerHandlers {
 
     @KafkaHandler
     public void saveUserAgent(SendUserAgentRqDto rq) {
-        commonService.saveUserAgent(rq.getUserAgentString());
+        commonService.saveUserAgent(rq.getUserId(), rq.getUserAgentString() );
     }
 
     @KafkaHandler

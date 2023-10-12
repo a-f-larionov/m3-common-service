@@ -10,16 +10,19 @@
     <springProperty scope="context" name="alerter.telegram.token" source="alerter.telegram.token"/>
     <springProperty scope="context" name="alerter.telegram.chatId" source="alerter.telegram.chatId"/>
 
+    <turboFilter class="ch.qos.logback.classic.turbo.DuplicateMessageFilter">
+        <allowedRepetitions>0</allowedRepetitions>
+    </turboFilter>
+
     <appender name="telegram" class="m3.common.logging.logback.TelegramAppender">
         <chatId>${alerter.telegram.chatId}</chatId>
         <token>${alerter.telegram.token}</token>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>WARN</level>
         </filter>
-
         <encoder>
             <pattern>
-                %d{yy-MM-dd HH:mm:ss} %p%n[%.10t]%n%.40logger%n%m
+                %d{yy-MM-dd HH:mm:ss} %p[%.50t]%.150logger%n%m
             </pattern>
         </encoder>
     </appender>

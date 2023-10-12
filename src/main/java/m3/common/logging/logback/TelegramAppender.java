@@ -13,7 +13,6 @@ public class TelegramAppender extends AppenderBase<ILoggingEvent> {
 
     @Setter
     private Encoder<ILoggingEvent> encoder;
-
     @Setter
     private String token;
     @Setter
@@ -21,15 +20,14 @@ public class TelegramAppender extends AppenderBase<ILoggingEvent> {
 
     @Override
     protected void append(ILoggingEvent eventObject) {
-
+        // Skip messages here
+        if (eventObject.getMessage().equals("These configurations '{}' were supplied but are not used yet.")) {
+            return;
+        }
         byte[] encodedBytes = encoder.encode(eventObject);
         String encodedMessage = new String(encodedBytes, StandardCharsets.UTF_8);
-        System.out.println("TELEGRAM");
-        System.out.println(encodedMessage);
-
         sendToTelegram(encodedMessage);
     }
-
 
     private void sendToTelegram(String encodedString) {
 
