@@ -2,7 +2,8 @@ package m3.common.kafka.config;
 
 import lombok.extern.slf4j.Slf4j;
 import m3.common.commons.ErrorCodes;
-import m3.common.dto.rq.ErrorRsDto;
+import m3.common.dto.rq.UserIdRqDto;
+import m3.common.dto.rs.ErrorRsDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +11,7 @@ import org.springframework.kafka.annotation.KafkaListenerConfigurer;
 import org.springframework.kafka.config.KafkaListenerEndpointRegistrar;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.listener.KafkaListenerErrorHandler;
+import org.springframework.kafka.listener.ListenerExecutionFailedException;
 import org.springframework.messaging.handler.annotation.support.MethodArgumentNotValidException;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
@@ -30,30 +32,36 @@ public class Config implements KafkaListenerConfigurer {
 
     @Bean
     public KafkaListenerErrorHandler validationErrorHandler() {
-        log.info("INFO!");
-        return (m, e) -> {
+        return (genericMsg, exception) -> {
             String errorMsg = null;
-            log.info("HANDLE THE VALIDATION ERROR!!!!!!!!!!");
-            //kafkaTemplate.send("topic-client", new HttpExceptionError(ErrorCodes.VALIDATE_ERROR));
-            log.info(e.getMessage());
+            var payload = genericMsg.getPayload();
 
-            if (!(e.getCause() instanceof MethodArgumentNotValidException)) {
-                errorMsg += "Не известная ошибка!";
-            } else {
+            errorMsg = extractErrorMessage(exception, errorMsg);
+            errorMsg += payload.toString();
 
-                var firstError = ((MethodArgumentNotValidException) e.getCause()).getBindingResult()
-                        .getAllErrors()
-                        .get(0);
-//                if (firstError instanceof SpringValidatorAdapter) {
-//                    //((SpringValidatorAdapter)firstError).getConstraintsForClass()
-                errorMsg += " " + firstError.getDefaultMessage();
+            if (payload instanceof UserIdRqDto && ((UserIdRqDto) payload).getUserId() != null) {
+                var rs = new ErrorRsDto(
+                        ErrorCodes.VALIDATE_ERROR,
+                        errorMsg,
+                        ((UserIdRqDto) payload).getUserId(),
+                        payload.getClass().getName());
+                kafkaTemplate.send("topic-client", rs);
             }
 
-            var rs = new ErrorRsDto(ErrorCodes.VALIDATE_ERROR, errorMsg);
-            kafkaTemplate.send("topic-client", rs);
-
-            return rs;
+            throw exception;
         };
+    }
+
+    private static String extractErrorMessage(ListenerExecutionFailedException e, String errorMsg) {
+        if (!(e.getCause() instanceof MethodArgumentNotValidException)) {
+           return "Не известная ошибка!";
+        } else {
+
+            var firstError = ((MethodArgumentNotValidException) e.getCause()).getBindingResult()
+                    .getAllErrors()
+                    .get(0);
+            return firstError.getDefaultMessage();
+        }
     }
 
 }

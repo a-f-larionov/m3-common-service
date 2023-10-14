@@ -3,10 +3,7 @@ package m3.common.listeners;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import m3.common.dto.rq.LogRqDto;
-import m3.common.dto.rq.SendMeTimeRqDto;
-import m3.common.dto.rq.SendUserAgentRqDto;
-import m3.common.dto.rq.StatisticRqDto;
+import m3.common.dto.rq.*;
 import m3.common.dto.rs.UpdateTimeRsDto;
 import m3.common.mappers.CommonMapper;
 import m3.common.services.CommonService;
@@ -27,24 +24,29 @@ public class KafkaListenerHandlers {
 
     @KafkaHandler
     public void log(@Valid LogRqDto rq) {
-        commonService.log(rq.getMessage(), rq.getLevel(), rq.getDetails(), rq.getType());
+        commonService.log(rq.getLevel(), rq.getMessage(), rq.getDetails());
     }
 
     @KafkaHandler
     public void saveUserAgent(SendUserAgentRqDto rq) {
-        commonService.saveUserAgent(rq.getUserId(), rq.getUserAgentString() );
+        commonService.saveUserAgent(rq.getUserId(), rq.getUserAgentString());
     }
 
     @KafkaHandler
     @SendTo("topic-client")
     public UpdateTimeRsDto sendMeTime(SendMeTimeRqDto rq) {
         return commonMapper.toUpdateTimeRsDto(
-                 commonService.getCurrentTime(),
+                commonService.getCurrentTime(),
                 rq.getConnectionId());
     }
 
     @KafkaHandler
     public void statistic(StatisticRqDto rq) {
         commonService.statistic(rq.getUserId(), rq.getStatId());
+    }
+
+    @KafkaHandler
+    public void sendToTelegram(TelegramRqDto rq) {
+        commonService.sendToTelegram(rq.getMessage(), rq.getDetail());
     }
 }
