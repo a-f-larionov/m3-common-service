@@ -4,9 +4,8 @@ import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
 import ch.qos.logback.core.encoder.Encoder;
 import lombok.Setter;
+import m3.common.helpers.TelegramSender;
 
-import java.io.IOException;
-import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
 public class TelegramAppender extends AppenderBase<ILoggingEvent> {
@@ -26,28 +25,6 @@ public class TelegramAppender extends AppenderBase<ILoggingEvent> {
         }
         byte[] encodedBytes = encoder.encode(eventObject);
         String encodedMessage = new String(encodedBytes, StandardCharsets.UTF_8);
-        sendToTelegram(encodedMessage);
-    }
-
-    private void sendToTelegram(String encodedString) {
-
-        var endpoint = "https://api.telegram.org/bot"
-                + token
-                + "/sendMessage" +
-                "?chat_id=" + chatId +
-                "&text=" + URLEncoder.encode(encodedString, StandardCharsets.UTF_8);
-
-        endpoint = endpoint.substring(0, Math.min(endpoint.length(), 1024));
-
-        ProcessBuilder pb = new ProcessBuilder();
-        pb.command("curl", endpoint, "--ssl-no-revoke");
-        Process p;
-        try {
-            p = pb.start();
-            p.waitFor();
-
-        } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        TelegramSender.getInstance().sendToTelegram(encodedMessage, token, chatId);
     }
 }

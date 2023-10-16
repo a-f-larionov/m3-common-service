@@ -4,7 +4,6 @@ import m3.common.BaseSpringBootTest;
 import m3.common.enums.LogLevels;
 import m3.common.enums.StatisticEnum;
 import m3.common.services.impl.CommonServiceImpl;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -30,6 +29,7 @@ public class UserServiceFuncTest extends BaseSpringBootTest {
 
     @Test
     void log() {
+        final Boolean sendToTelegram = false;
         final ByteArrayOutputStream myOut = new ByteArrayOutputStream();
         System.setOut(new PrintStream(myOut));
 
@@ -39,12 +39,30 @@ public class UserServiceFuncTest extends BaseSpringBootTest {
         final var level = LogLevels.INFO;
 
         // when
-        service.log(level, message, details);
+        service.log(level, message, details, sendToTelegram);
 
         // then
         final String standardOutput = myOut.toString();
         assertThat(standardOutput)
                 .contains("--- [    Test worker] m.c.services.impl.CommonServiceImpl      : msgdetails")
+                .contains(" INFO ");
+    }
+
+    @Test
+    void statistic() {
+        // given
+        final ByteArrayOutputStream myOut = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(myOut));
+        final  var userId = 1234L;
+        final  var statId = StatisticEnum.ID_BUY_HUMMER;
+        // when
+        service.statistic(userId, statId);
+
+        // then
+        saveUserAgent();
+        final String standardOutput = myOut.toString();
+        assertThat(standardOutput)
+                .contains("--- [    Test worker] m.c.services.impl.CommonServiceImpl      : Stat400 Купил молоток")
                 .contains(" INFO ");
     }
 
@@ -73,25 +91,5 @@ public class UserServiceFuncTest extends BaseSpringBootTest {
         final var data = jdbcTemplate.queryForMap("SELECT * FROM `user_agents`");
         assertEquals(userId, Long.valueOf((Integer) data.get("uid")));
         assertEquals(userAgentString, data.get("agent"));
-    }
-
-    @Test
-    @Disabled
-    void statistic() {
-        // given
-        final  var userId = 1234L;
-        final  var statId = StatisticEnum.ID_BUY_HUMMER;
-        // when
-        service.statistic(userId, statId);
-
-        // then
-    }
-
-    @Test
-    @Disabled
-    void sendToTelegram() {
-        // given
-        // when
-        // then
     }
 }

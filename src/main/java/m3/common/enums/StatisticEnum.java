@@ -28,5 +28,5 @@ public enum StatisticEnum {
     ID_START_PLAY(701, "Начал уровень");
 
     private final int id;
-    private String title;
+    private final String title;
 }

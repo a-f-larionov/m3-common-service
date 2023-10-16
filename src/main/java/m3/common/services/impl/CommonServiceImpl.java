@@ -27,7 +27,7 @@ public class CommonServiceImpl implements CommonService {
     private final UserAgentMapper userAgentMapper;
 
     @Override
-    public void log(LogLevels level, String message, String details) {
+    public void log(LogLevels level, String message, String details, Boolean sendToTelegram) {
 
         switch (level) {
             case TRACE -> log.trace(message + details);
@@ -35,6 +35,13 @@ public class CommonServiceImpl implements CommonService {
             case INFO -> log.info(message + details);
             case WARN -> log.warn(message + details);
             case ERROR -> log.error(message + details);
+        }
+
+        if(sendToTelegram){
+            TelegramSender.getInstance().sendToTelegram(
+                    message + " " + details,
+                    teleToken, chatId
+            );
         }
     }
 
@@ -50,14 +57,7 @@ public class CommonServiceImpl implements CommonService {
 
     @Override
     public void statistic(Long userId, StatisticEnum stat) {
-        log(LogLevels.INFO, "Stat", "");
+        log(LogLevels.INFO, "Stat", stat.getId() + " " + stat.getTitle(), false);
     }
 
-    @Override
-    public void sendToTelegram(String message, String detail) {
-        TelegramSender.sendToTelegram(
-                message + " " + detail,
-                teleToken, chatId
-        );
-    }
 }

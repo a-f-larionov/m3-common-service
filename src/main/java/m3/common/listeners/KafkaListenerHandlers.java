@@ -3,7 +3,10 @@ package m3.common.listeners;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import m3.common.dto.rq.*;
+import m3.common.dto.rq.LogRqDto;
+import m3.common.dto.rq.SendMeTimeRqDto;
+import m3.common.dto.rq.SendUserAgentRqDto;
+import m3.common.dto.rq.StatisticRqDto;
 import m3.common.dto.rs.UpdateTimeRsDto;
 import m3.common.mappers.CommonMapper;
 import m3.common.services.CommonService;
@@ -24,7 +27,7 @@ public class KafkaListenerHandlers {
 
     @KafkaHandler
     public void log(@Valid LogRqDto rq) {
-        commonService.log(rq.getLevel(), rq.getMessage(), rq.getDetails());
+        commonService.log(rq.getLevel(), rq.getMessage(), rq.getDetails(), rq.getSendToTelegram());
     }
 
     @KafkaHandler
@@ -43,10 +46,5 @@ public class KafkaListenerHandlers {
     @KafkaHandler
     public void statistic(StatisticRqDto rq) {
         commonService.statistic(rq.getUserId(), rq.getStatId());
-    }
-
-    @KafkaHandler
-    public void sendToTelegram(TelegramRqDto rq) {
-        commonService.sendToTelegram(rq.getMessage(), rq.getDetail());
     }
 }

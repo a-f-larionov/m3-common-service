@@ -1,6 +1,9 @@
 package m3.common.listeners;
 
-import m3.common.dto.rq.*;
+import m3.common.dto.rq.LogRqDto;
+import m3.common.dto.rq.SendMeTimeRqDto;
+import m3.common.dto.rq.SendUserAgentRqDto;
+import m3.common.dto.rq.StatisticRqDto;
 import m3.common.dto.rs.UpdateTimeRsDto;
 import m3.common.enums.LogLevels;
 import m3.common.enums.StatisticEnum;
@@ -24,11 +27,13 @@ public class KafkaListenerHandlersTest {
     @Test
     void log() {
         // given
+        boolean sendToTelegram = true;
         final var rq = LogRqDto.builder()
                 .level(LogLevels.DEBUG)
                 .message("message")
                 .details("details")
                 .userId(123L)
+                .sendToTelegram(sendToTelegram)
                 .build();
 
         // when
@@ -36,7 +41,7 @@ public class KafkaListenerHandlersTest {
 
         // then
         verify(service, times(1))
-                .log(eq(rq.getLevel()), eq(rq.getMessage()), eq(rq.getDetails()));
+                .log(eq(rq.getLevel()), eq(rq.getMessage()), eq(rq.getDetails()), eq(sendToTelegram));
     }
 
     @Test
@@ -93,22 +98,5 @@ public class KafkaListenerHandlersTest {
                 .statistic(
                         eq(rq.getUserId()),
                         eq(rq.getStatId()));
-    }
-
-    @Test
-    void sendToTelegram() {
-        // given
-        final var rq = TelegramRqDto.builder()
-                .userId(123L)
-                .message("message")
-                .detail("details")
-                .build();
-
-        // when
-        listener.sendToTelegram(rq);
-
-        // then
-        verify(service, times(1))
-                .sendToTelegram(eq(rq.getMessage()), eq(rq.getDetail()));
     }
 }

@@ -18,4 +18,5 @@ public class LogRqDto extends UserIdRqDto {
     public LogLevels level;
     public String message;
     public String details;
+    public Boolean sendToTelegram;
 }

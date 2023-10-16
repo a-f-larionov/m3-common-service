@@ -19,6 +19,19 @@ public class UserServiceImplTest {
     private final UserAgentMapper userAgentMapper = Mockito.mock(UserAgentMapper.class);
     private final CommonService service = new CommonServiceImpl(userAgentRepository, userAgentMapper);
 
+
+    @Test
+    void log(){
+        // do not remove it
+        // and see m3.common.services.functional.UserServiceFuncTest.log
+    }
+
+    @Test
+    void statistic(){
+        // do not remove it
+        // see m3.common.services.functional.UserServiceFuncTest.statistic
+    }
+
     @Test
     void getCurrentTime() {
         // given - when
@@ -29,7 +42,6 @@ public class UserServiceImplTest {
                 .isNotNull()
                 .isCloseTo(System.currentTimeMillis(), within(1000L));
     }
-
     @Test
     void saveUserAgent() {
         // given
@@ -42,18 +54,4 @@ public class UserServiceImplTest {
         // then
         verify(userAgentRepository, Mockito.times(1)).save(any());
     }
-    @Test
-    void statistic(){
-        // given
-        // when
-        // then
-    }
-
-    @Test
-    void sendToTelegram(){
-        // given
-        // when
-        // then
-    }
-
 }
