@@ -20,7 +20,7 @@ public class CommonServiceImpl implements CommonService {
 
     @Value("${alerter.telegram.token}")
     private String teleToken;
-    @Value("${alerter.telegram.chatId")
+    @Value("${alerter.telegram.chatId}")
     private String chatId;
 
     private final UserAgentRepository userAgentRepository;
@@ -37,7 +37,7 @@ public class CommonServiceImpl implements CommonService {
             case ERROR -> log.error(message + details);
         }
 
-        if(sendToTelegram){
+        if (Boolean.TRUE.equals(sendToTelegram)) {
             TelegramSender.getInstance().sendToTelegram(
                     message + " " + details,
                     teleToken, chatId
