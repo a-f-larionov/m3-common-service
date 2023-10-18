@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import m3.common.enums.LogLevels;
 import m3.common.enums.StatisticEnum;
-import m3.common.helpers.TelegramSender;
+import m3.lib.common.helpers.TelegramSender;
 import m3.common.mappers.UserAgentMapper;
 import m3.common.repositories.UserAgentRepository;
 import m3.common.services.CommonService;

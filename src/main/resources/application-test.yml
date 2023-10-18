@@ -12,8 +12,3 @@ spring:
 logging:
   level:
     root: info
-
-alerter:
-  telegram:
-    chatId: -1001958935656
-    token: 1194574646:AAEWS0EP5ABnnFITO924snE30pcD9284Hbc

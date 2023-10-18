@@ -4,7 +4,7 @@ import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
 import ch.qos.logback.core.encoder.Encoder;
 import lombok.Setter;
-import m3.common.helpers.TelegramSender;
+import m3.lib.common.helpers.TelegramSender;
 
 import java.nio.charset.StandardCharsets;
 
