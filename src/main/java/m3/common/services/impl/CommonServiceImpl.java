@@ -2,9 +2,9 @@ package m3.common.services.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import m3.common.enums.LogLevels;
+import m3.common.enums.ClientLogLevels;
 import m3.common.enums.StatisticEnum;
-import m3.lib.common.helpers.TelegramSender;
+import m3.lib.helpers.TelegramSender;
 import m3.common.mappers.UserAgentMapper;
 import m3.common.repositories.UserAgentRepository;
 import m3.common.services.CommonService;
@@ -27,7 +27,7 @@ public class CommonServiceImpl implements CommonService {
     private final UserAgentMapper userAgentMapper;
 
     @Override
-    public void log(LogLevels level, String message, String details, Boolean sendToTelegram) {
+    public void log(ClientLogLevels level, String message, String details, Boolean sendToTelegram) {
 
         switch (level) {
             case TRACE -> log.trace(message + details);
@@ -57,7 +57,7 @@ public class CommonServiceImpl implements CommonService {
 
     @Override
     public void statistic(Long userId, StatisticEnum stat) {
-        log(LogLevels.INFO, "Stat", stat.getId() + " " + stat.getTitle(), false);
+        log(ClientLogLevels.INFO, "Stat", stat.getId() + " " + stat.getTitle(), false);
     }
 
 }

@@ -1,6 +1,5 @@
 package m3.common.listeners;
 
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import m3.common.dto.rq.LogRqDto;
@@ -26,7 +25,7 @@ public class KafkaListenerHandlers {
     private final CommonService commonService;
 
     @KafkaHandler
-    public void log(@Valid LogRqDto rq) {
+    public void log(LogRqDto rq) {
         commonService.log(rq.getLevel(), rq.getMessage(), rq.getDetails(), rq.getSendToTelegram());
     }
 

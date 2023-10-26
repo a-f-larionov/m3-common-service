@@ -5,7 +5,7 @@ import m3.common.dto.rq.SendMeTimeRqDto;
 import m3.common.dto.rq.SendUserAgentRqDto;
 import m3.common.dto.rq.StatisticRqDto;
 import m3.common.dto.rs.UpdateTimeRsDto;
-import m3.common.enums.LogLevels;
+import m3.common.enums.ClientLogLevels;
 import m3.common.enums.StatisticEnum;
 import m3.common.mappers.CommonMapper;
 import m3.common.services.impl.CommonServiceImpl;
@@ -29,7 +29,7 @@ public class KafkaListenerHandlersTest {
         // given
         boolean sendToTelegram = true;
         final var rq = LogRqDto.builder()
-                .level(LogLevels.DEBUG)
+                .level(ClientLogLevels.DEBUG)
                 .message("message")
                 .details("details")
                 .userId(123L)

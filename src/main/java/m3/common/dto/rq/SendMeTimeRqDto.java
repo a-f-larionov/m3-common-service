@@ -6,7 +6,6 @@ import lombok.experimental.SuperBuilder;
 
 @SuperBuilder
 @NoArgsConstructor
-//@AllArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode

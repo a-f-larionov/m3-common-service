@@ -4,6 +4,7 @@ package m3.common.dto.rq;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import m3.common.enums.StatisticEnum;
+import m3.lib.dto.rq.UserIdRqDto;
 
 @SuperBuilder
 @NoArgsConstructor

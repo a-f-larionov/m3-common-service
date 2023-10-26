@@ -1,9 +1,9 @@
 package m3.common.dto.rq;
 
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
-import m3.common.enums.LogLevels;
+import m3.common.enums.ClientLogLevels;
+import m3.lib.dto.rq.UserIdRqDto;
 
 @SuperBuilder
 @NoArgsConstructor
@@ -14,8 +14,7 @@ import m3.common.enums.LogLevels;
 @ToString(callSuper = true)
 public class LogRqDto extends UserIdRqDto {
 
-    @NotNull
-    public LogLevels level;
+    public ClientLogLevels level;
     public String message;
     public String details;
     public Boolean sendToTelegram;

@@ -1,7 +1,7 @@
 package m3.common.services.functional;
 
 import m3.common.BaseSpringBootTest;
-import m3.common.enums.LogLevels;
+import m3.common.enums.ClientLogLevels;
 import m3.common.enums.StatisticEnum;
 import m3.common.services.impl.CommonServiceImpl;
 import org.junit.jupiter.api.Test;
@@ -36,7 +36,7 @@ public class UserServiceFuncTest extends BaseSpringBootTest {
         // given
         final var message = "msg";
         final var details = "details";
-        final var level = LogLevels.INFO;
+        final var level = ClientLogLevels.INFO;
 
         // when
         service.log(level, message, details, sendToTelegram);
