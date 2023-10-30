@@ -1,4 +1,5 @@
 databaseChangeLog:
+
   - changeSet:
       id: 1
       author: alexandr
@@ -8,6 +9,7 @@ databaseChangeLog:
       changes:
         - sqlFile:
             path: classpath:db\changelog\change-sets\create-users.sql
+
   - changeSet:
       id: 2
       author: alexandr
@@ -17,3 +19,54 @@ databaseChangeLog:
       changes:
         - sqlFile:
             path: classpath:db\changelog\change-sets\create-user-agents.sql
+
+  - changeSet:
+      id: 3
+      author: alexandr
+      rollback:
+        - sql:
+            sql: drop table cache_top_score
+      changes:
+        - sqlFile:
+            path: classpath:db\changelog\change-sets\create-cache-top-score.sql
+
+  - changeSet:
+      id: 4
+      author: alexandr
+      rollback:
+        - sql:
+            sql: drop table payment
+      changes:
+        - sqlFile:
+            path: classpath:db\changelog\change-sets\create-payment.sql
+
+  - changeSet:
+      id: 5
+      author: alexandr
+      rollback:
+        - sql:
+            sql: drop table users_chests
+      changes:
+        - sqlFile:
+            path: classpath:db\changelog\change-sets\create-users-chests.sql
+
+
+  - changeSet:
+      id: 6
+      author: alexandr
+      rollback:
+        - sql:
+            sql: drop table users_points
+      changes:
+        - sqlFile:
+            path: classpath:db\changelog\change-sets\create-users-points.sql
+
+  - changeSet:
+      id: 7
+      author: alexandr
+      rollback:
+        - sql:
+            sql: drop table users_stuff
+      changes:
+        - sqlFile:
+            path: classpath:db\changelog\change-sets\create-users-stuff.sql

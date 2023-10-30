@@ -1,6 +1,6 @@
 package m3.common.mappers;
 
-import m3.common.entities.UserAgentEntity;
+import m3.lib.entities.UserAgentEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
