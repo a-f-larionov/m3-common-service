@@ -19,6 +19,16 @@
       "name": "alerter.telegram.token",
       "type": "java.lang.String",
       "description": "Telegram token for alerter."
+    },
+    {
+      "name": "spring.kafka.consumer.trusted_packages",
+      "type": "java.lang.String",
+      "description": "Description for spring.kafka.consumer.trusted_packages."
+    },
+    {
+      "name": "spring.kafka.topicName",
+      "type": "java.lang.String",
+      "description": "Description for spring.kafka.topicName."
     }
   ]
 }

@@ -28,3 +28,11 @@ alerter:
   telegram:
     chatId: ${TELEGRAM_CHAT_ID}
     token: ${TELEGRAM_TOKEN}
+
+server:
+  port: 8088
+management:
+  endpoints:
+    web:
+      exposure:
+        include: metrics
