@@ -2,8 +2,8 @@ package m3.common.services.impl;
 
 import m3.common.mappers.CommonMapper;
 import m3.common.mappers.UserAgentMapper;
-import m3.common.repositories.UserAgentRepository;
 import m3.common.services.CommonService;
+import m3.lib.repositories.UserAgentRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 

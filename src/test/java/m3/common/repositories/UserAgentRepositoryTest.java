@@ -1,7 +1,8 @@
 package m3.common.repositories;
 
 import m3.common.BaseDataJpaTest;
-import m3.common.entities.UserAgentEntity;
+import m3.lib.entities.UserAgentEntity;
+import m3.lib.repositories.UserAgentRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
