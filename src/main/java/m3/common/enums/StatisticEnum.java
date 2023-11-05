@@ -1,6 +1,7 @@
 package m3.common.enums;
 
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -18,7 +19,7 @@ public enum StatisticEnum {
     ID_BUY_VK_MONEY(300, "Купил ВК голоса"),
     ID_EXIT_GAME(703, "Вышел на карту сам"),
     ID_FINISH_PLAY(702, "Выиграл уровень"),
-    ID_HUMMER_USE(201, "Использовал молоток "),
+    ID_HUMMER_USE(201, "Использовал молоток"),
     ID_LEVEL_UP(800, "Перешел на следующий уровень"),
     ID_LIGHTNING_USE(202, "Использовал молнию"),
     ID_LOGOUT(102, "Вышел из приложения"),
@@ -27,6 +28,7 @@ public enum StatisticEnum {
     ID_SHUFFLE_USE(203, "Использовал вихрь"),
     ID_START_PLAY(701, "Начал уровень");
 
+    @JsonValue
     private final int id;
     private final String title;
 }
