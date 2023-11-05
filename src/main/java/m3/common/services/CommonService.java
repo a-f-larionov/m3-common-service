@@ -1,7 +1,7 @@
 package m3.common.services;
 
 import m3.common.enums.ClientLogLevels;
-import m3.common.enums.StatisticEnum;
+import m3.lib.enums.StatisticEnum;
 
 public interface CommonService {
     void log(ClientLogLevels level, String message, String detail, Boolean sendToTelegram);

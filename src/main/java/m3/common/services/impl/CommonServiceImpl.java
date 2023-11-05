@@ -3,7 +3,7 @@ package m3.common.services.impl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import m3.common.enums.ClientLogLevels;
-import m3.common.enums.StatisticEnum;
+import m3.lib.enums.StatisticEnum;
 import m3.common.mappers.UserAgentMapper;
 import m3.common.services.CommonService;
 import m3.lib.helpers.TelegramSender;

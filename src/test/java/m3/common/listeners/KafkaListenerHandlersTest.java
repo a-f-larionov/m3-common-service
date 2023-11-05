@@ -6,7 +6,7 @@ import m3.common.dto.rq.SendUserAgentRqDto;
 import m3.common.dto.rq.StatisticRqDto;
 import m3.common.dto.rs.UpdateTimeRsDto;
 import m3.common.enums.ClientLogLevels;
-import m3.common.enums.StatisticEnum;
+import m3.lib.enums.StatisticEnum;
 import m3.common.mappers.CommonMapper;
 import m3.common.services.impl.CommonServiceImpl;
 import org.junit.jupiter.api.Test;
