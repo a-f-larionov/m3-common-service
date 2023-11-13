@@ -15,4 +15,7 @@ import m3.lib.dto.rq.UserIdRqDto;
 @ToString(callSuper = true)
 public class StatisticRqDto extends UserIdRqDto {
     private StatisticEnum statId;
+    private Long time;
+    private String paramA;
+    private String paramB;
 }

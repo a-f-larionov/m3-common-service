@@ -31,7 +31,6 @@ public class KafkaListenerHandlersTest {
         final var rq = LogRqDto.builder()
                 .level(ClientLogLevels.DEBUG)
                 .message("message")
-                .details("details")
                 .userId(123L)
                 .sendToTelegram(sendToTelegram)
                 .build();
@@ -41,7 +40,7 @@ public class KafkaListenerHandlersTest {
 
         // then
         verify(service, times(1))
-                .log(eq(rq.getLevel()), eq(rq.getMessage()), eq(rq.getDetails()), eq(sendToTelegram));
+                .log(eq(rq.getLevel()), eq(rq.getMessage()), eq(sendToTelegram));
     }
 
     @Test

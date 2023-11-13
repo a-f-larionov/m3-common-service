@@ -25,7 +25,7 @@ public class KafkaListenerHandlers {
 
     @KafkaHandler
     public void log(LogRqDto rq) {
-        commonService.log(rq.getLevel(), rq.getMessage(), rq.getDetails(), rq.getSendToTelegram());
+        commonService.log(rq.getLevel(), rq.getMessage(),  rq.getSendToTelegram());
     }
 
     @KafkaHandler

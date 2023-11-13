@@ -35,11 +35,10 @@ public class UserServiceFuncTest extends BaseSpringBootTest {
 
         // given
         final var message = "msg";
-        final var details = "details";
         final var level = ClientLogLevels.INFO;
 
         // when
-        service.log(level, message, details, sendToTelegram);
+        service.log(level, message, sendToTelegram);
 
         // then
         final String standardOutput = myOut.toString();
@@ -53,8 +52,8 @@ public class UserServiceFuncTest extends BaseSpringBootTest {
         // given
         final ByteArrayOutputStream myOut = new ByteArrayOutputStream();
         System.setOut(new PrintStream(myOut));
-        final  var userId = 1234L;
-        final  var statId = StatisticEnum.ID_BUY_HUMMER;
+        final var userId = 1234L;
+        final var statId = StatisticEnum.ID_BUY_HUMMER;
         // when
         service.statistic(userId, statId);
 
@@ -82,7 +81,7 @@ public class UserServiceFuncTest extends BaseSpringBootTest {
         // given
         final var userId = 123L;
         final var userAgentString = "user-agent-string";
-        jdbcTemplate.update("DELETE FROM `user_agents`");
+        jdbcTemplate.update("DELETE FROM `user_agents` WHERE uid BETWEEN -1 AND 1000000000000000000");
 
         // when
         service.saveUserAgent(userId, userAgentString);
