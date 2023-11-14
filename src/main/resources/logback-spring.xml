@@ -34,7 +34,7 @@
         </filter>
         <encoder>
             <pattern>
-                ${spring.application.name} %d{MM-dd HH:mm:ss} %p %.150logger %clm
+                ${spring.application.name} %d{MM-dd HH:mm:ss} %p %.150logger %clm %nopex
             </pattern>
         </encoder>
     </appender>
