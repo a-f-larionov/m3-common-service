@@ -43,6 +43,6 @@ public class KafkaListenerHandlers {
 
     @KafkaHandler
     public void statistic(StatisticRqDto rq) {
-        commonService.statistic(rq.getUserId(), rq.getStatId());
+            commonService.statistic(rq.getUserId(), rq.getStatId());
     }
 }
