@@ -2,8 +2,8 @@ package m3.common.services.functional;
 
 import m3.common.BaseSpringBootTest;
 import m3.common.enums.ClientLogLevels;
-import m3.lib.enums.StatisticEnum;
 import m3.common.services.impl.CommonServiceImpl;
+import m3.lib.enums.StatisticEnum;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
