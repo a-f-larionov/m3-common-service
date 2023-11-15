@@ -14,5 +14,4 @@ import m3.lib.dto.rq.UserIdRqDto;
 public class TelegramRqDto extends UserIdRqDto {
 
     private String message;
-    private String detail;
 }

@@ -3,12 +3,12 @@ package m3.common.listeners;
 import m3.common.dto.rq.LogRqDto;
 import m3.common.dto.rq.SendMeTimeRqDto;
 import m3.common.dto.rq.SendUserAgentRqDto;
-import m3.common.dto.rq.StatisticRqDto;
 import m3.common.dto.rs.UpdateTimeRsDto;
 import m3.common.enums.ClientLogLevels;
-import m3.common.enums.StatisticEnum;
 import m3.common.mappers.CommonMapper;
 import m3.common.services.impl.CommonServiceImpl;
+import m3.lib.dto.rq.StatisticRqDto;
+import m3.lib.enums.StatisticEnum;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -31,7 +31,6 @@ public class KafkaListenerHandlersTest {
         final var rq = LogRqDto.builder()
                 .level(ClientLogLevels.DEBUG)
                 .message("message")
-                .details("details")
                 .userId(123L)
                 .sendToTelegram(sendToTelegram)
                 .build();
@@ -41,7 +40,7 @@ public class KafkaListenerHandlersTest {
 
         // then
         verify(service, times(1))
-                .log(eq(rq.getLevel()), eq(rq.getMessage()), eq(rq.getDetails()), eq(sendToTelegram));
+                .log(eq(rq.getLevel()), eq(rq.getMessage()), eq(sendToTelegram));
     }
 
     @Test

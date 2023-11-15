@@ -12,13 +12,17 @@ spring:
   kafka:
     bootstrap-servers: kafka:9092
     consumer:
-      trusted_packages: "m3.common.dto.rq"
+      trusted_packages: "m3.common.dto.rq, m3.lib.dto.rq, m3.stuff.dto.rq, m3.payment.dto.rq"
     topicName: 'topic-common'
 
   profiles:
     group:
       home: local, suppress_useless_logs, home
       local: local, suppress_useless_logs
+
+  jpa:
+    hibernate:
+      naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
 
 logging:
   level:

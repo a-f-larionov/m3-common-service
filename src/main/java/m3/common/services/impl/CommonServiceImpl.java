@@ -3,9 +3,9 @@ package m3.common.services.impl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import m3.common.enums.ClientLogLevels;
-import m3.common.enums.StatisticEnum;
 import m3.common.mappers.UserAgentMapper;
 import m3.common.services.CommonService;
+import m3.lib.enums.StatisticEnum;
 import m3.lib.helpers.TelegramSender;
 import m3.lib.repositories.UserAgentRepository;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,6 +13,7 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import static java.lang.String.format;
 import static m3.common.enums.ClientLogLevels.INFO;
 
 @RequiredArgsConstructor
@@ -30,19 +31,19 @@ public class CommonServiceImpl implements CommonService {
     private final UserAgentMapper userAgentMapper;
 
     @Override
-    public void log(ClientLogLevels level, String message, String details, @NonNull Boolean sendToTelegram) {
+    public void log(ClientLogLevels level, String message, @NonNull Boolean sendToTelegram) {
 
         switch (level) {
-            case TRACE -> log.trace(message + details);
-            case DEBUG -> log.debug(message + details);
-            case INFO -> log.info(message + details);
-            case WARN -> log.warn(message + details);
-            case ERROR -> log.error(message + details);
+            case TRACE -> log.trace(message);
+            case DEBUG -> log.debug(message);
+            case INFO -> log.info(message);
+            case WARN -> log.warn(message);
+            case ERROR -> log.error(message);
         }
 
         if (Boolean.TRUE.equals(sendToTelegram)) {
             TelegramSender.getInstance().sendToTelegram(
-                    message + " " + details,
+                    message,
                     teleToken, chatId
             );
         }
@@ -60,12 +61,6 @@ public class CommonServiceImpl implements CommonService {
 
     @Override
     public void statistic(Long userId, StatisticEnum stat) {
-        log(
-                INFO,
-                "Stat",
-                stat.getId() + " " + stat.getTitle(),
-                true
-        );
+        log(INFO, format("Stat uid:%d %d %s", userId, stat.getId(), stat.getTitle()), true);
     }
-
 }
