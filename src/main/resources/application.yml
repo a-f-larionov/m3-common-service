@@ -12,7 +12,7 @@ spring:
   kafka:
     bootstrap-servers: kafka:9092
     consumer:
-      trusted_packages: "m3.common.dto.rq, m3.lib.dto.rq, m3.stuff.dto.rq, m3.payment.dto.rq"
+      trusted_packages: "m3.common.dto.rq, m3.lib.dto.rq, m3.gameplay.dto.rq"
     topicName: 'topic-common'
 
   profiles:

@@ -3,7 +3,6 @@ package m3.common.listeners;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import m3.common.dto.rq.LogRqDto;
-import m3.common.dto.rq.SendMeStuffRqDto;
 import m3.common.dto.rq.SendMeTimeRqDto;
 import m3.common.dto.rq.SendUserAgentRqDto;
 import m3.common.dto.rs.UpdateTimeRsDto;
@@ -45,10 +44,5 @@ public class KafkaListenerHandlers {
     @KafkaHandler
     public void statistic(StatisticRqDto rq) {
         commonService.statistic(rq.getUserId(), rq.getStatId());
-    }
-
-    @KafkaHandler
-    public void sendMeStuff(SendMeStuffRqDto rq) {
-        System.out.println(rq);
     }
 }
