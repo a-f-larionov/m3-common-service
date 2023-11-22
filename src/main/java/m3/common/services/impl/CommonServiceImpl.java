@@ -2,9 +2,9 @@ package m3.common.services.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import m3.common.enums.ClientLogLevels;
 import m3.common.mappers.UserAgentMapper;
 import m3.common.services.CommonService;
+import m3.lib.enums.ClientLogLevels;
 import m3.lib.enums.StatisticEnum;
 import m3.lib.helpers.TelegramSender;
 import m3.lib.repositories.UserAgentRepository;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import static java.lang.String.format;
-import static m3.common.enums.ClientLogLevels.INFO;
+import static m3.lib.enums.ClientLogLevels.INFO;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -60,7 +60,7 @@ public class CommonServiceImpl implements CommonService {
     }
 
     @Override
-    public void statistic(Long userId, StatisticEnum stat) {
-        log(INFO, format("Stat uid:%d %d %s", userId, stat.getId(), stat.getTitle()), true);
+    public void statistic(Long userId, StatisticEnum stat, String paramA, String paramB) {
+        log(INFO, format("Stat uid:%d %d %s %s %s", userId, stat.getId(), stat.getTitle(), paramA, paramB), true);
     }
 }

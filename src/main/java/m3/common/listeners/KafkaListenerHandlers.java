@@ -2,12 +2,12 @@ package m3.common.listeners;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import m3.common.dto.rq.LogRqDto;
 import m3.common.dto.rq.SendMeTimeRqDto;
 import m3.common.dto.rq.SendUserAgentRqDto;
 import m3.common.dto.rs.UpdateTimeRsDto;
 import m3.common.mappers.CommonMapper;
 import m3.common.services.CommonService;
+import m3.lib.dto.rq.LogRqDto;
 import m3.lib.dto.rq.StatisticRqDto;
 import org.springframework.kafka.annotation.KafkaHandler;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -29,6 +29,11 @@ public class KafkaListenerHandlers {
     }
 
     @KafkaHandler
+    public void statistic(StatisticRqDto rq) {
+        commonService.statistic(rq.getUserId(), rq.getStatId(), rq.getParamA(), rq.getParamB());
+    }
+
+    @KafkaHandler
     public void saveUserAgent(SendUserAgentRqDto rq) {
         commonService.saveUserAgent(rq.getUserId(), rq.getUserAgentString());
     }
@@ -39,10 +44,5 @@ public class KafkaListenerHandlers {
         return commonMapper.toUpdateTimeRsDto(
                 commonService.getCurrentTime(),
                 rq.getConnectionId());
-    }
-
-    @KafkaHandler
-    public void statistic(StatisticRqDto rq) {
-        commonService.statistic(rq.getUserId(), rq.getStatId());
     }
 }

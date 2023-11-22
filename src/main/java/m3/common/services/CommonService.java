@@ -1,6 +1,6 @@
 package m3.common.services;
 
-import m3.common.enums.ClientLogLevels;
+import m3.lib.enums.ClientLogLevels;
 import m3.lib.enums.StatisticEnum;
 
 public interface CommonService {
@@ -10,5 +10,5 @@ public interface CommonService {
 
     Long getCurrentTime();
 
-    void statistic(Long userId, StatisticEnum stat);
+    void statistic(Long userId, StatisticEnum stat, String paramA, String paramB);
 }

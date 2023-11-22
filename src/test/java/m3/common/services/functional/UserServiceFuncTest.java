@@ -1,8 +1,8 @@
 package m3.common.services.functional;
 
 import m3.common.BaseSpringBootTest;
-import m3.common.enums.ClientLogLevels;
 import m3.common.services.impl.CommonServiceImpl;
+import m3.lib.enums.ClientLogLevels;
 import m3.lib.enums.StatisticEnum;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,13 +55,13 @@ public class UserServiceFuncTest extends BaseSpringBootTest {
         final var userId = 1234L;
         final var statId = StatisticEnum.ID_BUY_HUMMER;
         // when
-        service.statistic(userId, statId);
+        service.statistic(userId, statId, "param-a", "param-b");
 
         // then
         saveUserAgent();
         final String standardOutput = myOut.toString();
         assertThat(standardOutput)
-                .contains("--- [    Test worker] m.c.services.impl.CommonServiceImpl      : Stat400 Купил молоток")
+                .contains("--- [    Test worker] m.c.services.impl.CommonServiceImpl      : Stat400 Купил молоток param-a param-b")
                 .contains(" INFO ");
     }
 

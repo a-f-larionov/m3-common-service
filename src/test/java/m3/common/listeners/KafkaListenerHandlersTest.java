@@ -1,13 +1,13 @@
 package m3.common.listeners;
 
-import m3.common.dto.rq.LogRqDto;
 import m3.common.dto.rq.SendMeTimeRqDto;
 import m3.common.dto.rq.SendUserAgentRqDto;
 import m3.common.dto.rs.UpdateTimeRsDto;
-import m3.common.enums.ClientLogLevels;
 import m3.common.mappers.CommonMapper;
 import m3.common.services.impl.CommonServiceImpl;
+import m3.lib.dto.rq.LogRqDto;
 import m3.lib.dto.rq.StatisticRqDto;
+import m3.lib.enums.ClientLogLevels;
 import m3.lib.enums.StatisticEnum;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -96,6 +96,6 @@ public class KafkaListenerHandlersTest {
         verify(service, times(1))
                 .statistic(
                         eq(rq.getUserId()),
-                        eq(rq.getStatId()));
+                        eq(rq.getStatId()), rq.getParamA(), rq.getParamB());
     }
 }

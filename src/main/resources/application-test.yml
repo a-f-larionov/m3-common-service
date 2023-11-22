@@ -11,4 +11,7 @@ spring:
 
 logging:
   level:
-    root: info
+    ROOT: FATAL
+#    org:
+#      apache:
+#        kafka: FATAL
