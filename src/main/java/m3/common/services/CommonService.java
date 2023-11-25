@@ -11,4 +11,5 @@ public interface CommonService {
     Long getCurrentTime();
 
     void statistic(Long userId, StatisticEnum stat, String paramA, String paramB);
+
 }
