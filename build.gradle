@@ -34,7 +34,7 @@ dependencies {
 
     implementation 'org.liquibase:liquibase-core'
 
-    implementation 'm3:m3-lib:1.0-SNAPSHOT'
+    implementation(project(":m3-lib"))
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testCompileOnly 'org.projectlombok:lombok'

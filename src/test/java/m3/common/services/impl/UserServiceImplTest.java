@@ -1,6 +1,5 @@
 package m3.common.services.impl;
 
-import m3.common.mappers.CommonMapper;
 import m3.common.mappers.UserAgentMapper;
 import m3.common.services.CommonService;
 import m3.lib.repositories.UserAgentRepository;
@@ -14,20 +13,20 @@ import static org.mockito.Mockito.verify;
 
 public class UserServiceImplTest {
 
-    private final CommonMapper mapper = Mockito.mock(CommonMapper.class);
     private final UserAgentRepository userAgentRepository = Mockito.mock(UserAgentRepository.class);
     private final UserAgentMapper userAgentMapper = Mockito.mock(UserAgentMapper.class);
+
     private final CommonService service = new CommonServiceImpl(userAgentRepository, userAgentMapper);
 
 
     @Test
-    void log(){
+    void log() {
         // do not remove it
         // and see m3.common.services.functional.UserServiceFuncTest.log
     }
 
     @Test
-    void statistic(){
+    void statistic() {
         // do not remove it
         // see m3.common.services.functional.UserServiceFuncTest.statistic
     }
@@ -42,6 +41,7 @@ public class UserServiceImplTest {
                 .isNotNull()
                 .isCloseTo(System.currentTimeMillis(), within(1000L));
     }
+
     @Test
     void saveUserAgent() {
         // given

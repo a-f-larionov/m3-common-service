@@ -7,9 +7,7 @@ import m3.common.services.CommonService;
 import m3.lib.enums.ClientLogLevels;
 import m3.lib.enums.StatisticEnum;
 import m3.lib.helpers.TelegramSender;
-import m3.lib.repositories.PaymentRepository;
 import m3.lib.repositories.UserAgentRepository;
-import m3.lib.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
@@ -23,7 +21,6 @@ import static m3.lib.enums.ClientLogLevels.INFO;
 @Service
 @Transactional
 public class CommonServiceImpl implements CommonService {
-    private final PaymentRepository paymentRepository;
 
     @Value("${alerter.telegram.token}")
     private String teleToken;
@@ -32,7 +29,6 @@ public class CommonServiceImpl implements CommonService {
 
     private final UserAgentRepository userAgentRepository;
     private final UserAgentMapper userAgentMapper;
-    private final UserRepository userRepository;
 
     @Override
     public void log(ClientLogLevels level, String message, @NonNull Boolean sendToTelegram) {
