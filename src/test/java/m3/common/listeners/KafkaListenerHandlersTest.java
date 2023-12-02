@@ -96,6 +96,7 @@ public class KafkaListenerHandlersTest {
         verify(service, times(1))
                 .statistic(
                         eq(rq.getUserId()),
-                        eq(rq.getStatId()), rq.getParamA(), rq.getParamB());
+                        eq(rq.getStatId()),
+                        eq(rq.getParamA()), eq(rq.getParamB()));
     }
 }

@@ -23,19 +23,17 @@ public class UserServiceFuncTest extends BaseSpringBootTest {
 
     @Autowired
     CommonServiceImpl service;
-
     @Autowired
     JdbcTemplate jdbcTemplate;
 
     @Test
     void log() {
-        final Boolean sendToTelegram = false;
-        final ByteArrayOutputStream myOut = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(myOut));
-
         // given
-        final var message = "msg";
+        final Boolean sendToTelegram = false;
+        final var message = " message ";
         final var level = ClientLogLevels.INFO;
+
+        final ByteArrayOutputStream myOut = redirectStdOut();
 
         // when
         service.log(level, message, sendToTelegram);
@@ -43,15 +41,14 @@ public class UserServiceFuncTest extends BaseSpringBootTest {
         // then
         final String standardOutput = myOut.toString();
         assertThat(standardOutput)
-                .contains("--- [    Test worker] m.c.services.impl.CommonServiceImpl      : msgdetails")
-                .contains(" INFO ");
+                .contains(" INFO ")
+                .contains("--- [    Test worker] m.c.services.impl.CommonServiceImpl      :  message");
     }
 
     @Test
     void statistic() {
         // given
-        final ByteArrayOutputStream myOut = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(myOut));
+        final ByteArrayOutputStream myOut = redirectStdOut();
         final var userId = 1234L;
         final var statId = StatisticEnum.ID_BUY_HUMMER;
         // when
@@ -61,8 +58,8 @@ public class UserServiceFuncTest extends BaseSpringBootTest {
         saveUserAgent();
         final String standardOutput = myOut.toString();
         assertThat(standardOutput)
-                .contains("--- [    Test worker] m.c.services.impl.CommonServiceImpl      : Stat400 Купил молоток param-a param-b")
-                .contains(" INFO ");
+                .contains(" INFO ")
+                .contains("--- [    Test worker] m.c.services.impl.CommonServiceImpl      : Stat uid:1234 400 Купил молоток param-a param-b");
     }
 
     @Test
@@ -90,5 +87,11 @@ public class UserServiceFuncTest extends BaseSpringBootTest {
         final var data = jdbcTemplate.queryForMap("SELECT * FROM `user_agents`");
         assertEquals(userId, Long.valueOf((Integer) data.get("uid")));
         assertEquals(userAgentString, data.get("agent"));
+    }
+
+    private static ByteArrayOutputStream redirectStdOut() {
+        final ByteArrayOutputStream myOut = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(myOut));
+        return myOut;
     }
 }
