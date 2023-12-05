@@ -8,6 +8,8 @@ import m3.lib.enums.ClientLogLevels;
 import m3.lib.enums.StatisticEnum;
 import m3.lib.helpers.TelegramSender;
 import m3.lib.repositories.UserAgentRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
@@ -27,6 +29,8 @@ public class CommonServiceImpl implements CommonService {
     @Value("${alerter.telegram.chatId}")
     private String chatId;
 
+    private static final Logger logger = LoggerFactory.getLogger("logger");
+
     private final UserAgentRepository userAgentRepository;
     private final UserAgentMapper userAgentMapper;
 
@@ -34,11 +38,11 @@ public class CommonServiceImpl implements CommonService {
     public void log(ClientLogLevels level, String message, @NonNull Boolean sendToTelegram) {
 
         switch (level) {
-            case TRACE -> log.trace(message);
-            case DEBUG -> log.debug(message);
-            case INFO -> log.info(message);
-            case WARN -> log.warn(message);
-            case ERROR -> log.error(message);
+            case TRACE -> logger.trace(message);
+            case DEBUG -> logger.debug(message);
+            case INFO -> logger.info(message);
+            case WARN -> logger.warn(message);
+            case ERROR -> logger.error(message);
         }
 
         if (Boolean.TRUE.equals(sendToTelegram)) {

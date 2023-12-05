@@ -42,7 +42,7 @@ public class UserServiceFuncTest extends BaseSpringBootTest {
         final String standardOutput = myOut.toString();
         assertThat(standardOutput)
                 .contains(" INFO ")
-                .contains("--- [    Test worker] m.c.services.impl.CommonServiceImpl      :  message");
+                .contains("--- [    Test worker] logger                                   :  message ");
     }
 
     @Test
@@ -59,7 +59,7 @@ public class UserServiceFuncTest extends BaseSpringBootTest {
         final String standardOutput = myOut.toString();
         assertThat(standardOutput)
                 .contains(" INFO ")
-                .contains("--- [    Test worker] m.c.services.impl.CommonServiceImpl      : Stat uid:1234 400 Купил молоток param-a param-b");
+                .contains("--- [    Test worker] logger                                   : Stat uid:1234 400 Купил молоток param-a param-b");
     }
 
     @Test
