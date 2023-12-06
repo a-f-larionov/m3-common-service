@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 @KafkaListener(topics = "topic-common", errorHandler = "validationErrorHandler")
-public class KafkaListenerHandlers {
+public class TopicCommonListener {
 
     private final CommonMapper commonMapper;
     private final CommonService commonService;

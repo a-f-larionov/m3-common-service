@@ -15,11 +15,6 @@ spring:
       trusted_packages: "m3.common.dto.rq, m3.lib.dto.rq, m3.game.dto.rq"
     topicName: 'topic-common'
 
-  profiles:
-    group:
-      home: local, suppress_useless_logs, home
-      local: local, suppress_useless_logs
-
   jpa:
     hibernate:
       naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
@@ -35,8 +30,3 @@ alerter:
 
 server:
   port: 8088
-management:
-  endpoints:
-    web:
-      exposure:
-        include: metrics

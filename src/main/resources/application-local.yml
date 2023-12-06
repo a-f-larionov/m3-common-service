@@ -4,10 +4,3 @@ spring:
     url: jdbc:mysql://localhost:3306/local_database
     username: local_user
     password: local_password
-
-  kafka:
-    bootstrap-servers: kafka:9092
-
-logging:
-  level:
-    root: info

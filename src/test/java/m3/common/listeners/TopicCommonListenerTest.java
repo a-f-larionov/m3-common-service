@@ -17,12 +17,12 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
-public class KafkaListenerHandlersTest {
+public class TopicCommonListenerTest {
 
     private final CommonServiceImpl service = Mockito.mock(CommonServiceImpl.class);
     private final CommonMapper mapper = Mockito.mock(CommonMapper.class);
 
-    private final KafkaListenerHandlers listener = new KafkaListenerHandlers(mapper, service);
+    private final TopicCommonListener listener = new TopicCommonListener(mapper, service);
 
     @Test
     void log() {
