@@ -23,6 +23,7 @@
         <org.projectlombok.version>1.18.30</org.projectlombok.version>
         <com.fasterxml.jackson.core.version>2.16.0</com.fasterxml.jackson.core.version>
         <org.liquibase.version>4.25.0</org.liquibase.version>
+        <m3.m3-lib.version>1.0-SNAPSHOT</m3.m3-lib.version>
 
         <maven.install.skip>true</maven.install.skip>
         <maven.deploy.skip>true</maven.deploy.skip>
@@ -54,7 +55,7 @@
         <dependency>
             <groupId>m3</groupId>
             <artifactId>m3-lib</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${m3.m3-lib.version}</version>
         </dependency>
 
         <dependency>
