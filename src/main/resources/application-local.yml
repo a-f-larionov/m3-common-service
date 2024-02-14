@@ -4,3 +4,8 @@ spring:
     url: jdbc:mysql://localhost:3306/local_database
     username: local_user
     password: local_password
+
+alerter:
+  telegram:
+    chatId: -1234567890123
+    token: 1234567890:THISISATESTATOKENABCDEFGHUJIKLMNOPQ
