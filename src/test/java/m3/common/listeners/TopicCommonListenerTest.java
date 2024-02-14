@@ -21,7 +21,6 @@ public class TopicCommonListenerTest {
 
     private final CommonServiceImpl service = Mockito.mock(CommonServiceImpl.class);
     private final CommonMapper mapper = Mockito.mock(CommonMapper.class);
-
     private final TopicCommonListener listener = new TopicCommonListener(mapper, service);
 
     @Test
