@@ -30,7 +30,7 @@ public class UserServiceFuncTest extends BaseSpringBootTest {
     void log() {
         // given
         final Boolean sendToTelegram = false;
-        final var message = " message ";
+        final var message = " my test message ";
         final var level = ClientLogLevels.INFO;
 
         final ByteArrayOutputStream myOut = redirectStdOut();
@@ -42,7 +42,8 @@ public class UserServiceFuncTest extends BaseSpringBootTest {
         final String standardOutput = myOut.toString();
         assertThat(standardOutput)
                 .contains(" INFO ")
-                .contains("--- [    Test worker] logger                                   :  message ");
+                .contains("common-service")
+                .contains(" logger                                   :  my test message ");
     }
 
     @Test
@@ -59,7 +60,7 @@ public class UserServiceFuncTest extends BaseSpringBootTest {
         final String standardOutput = myOut.toString();
         assertThat(standardOutput)
                 .contains(" INFO ")
-                .contains("--- [    Test worker] logger                                   : Stat uid:1234 400 Купил молоток param-a param-b");
+                .contains(" logger                                   : Stat uid:1234 400 Купил молоток param-a param-b");
     }
 
     @Test
