@@ -41,7 +41,6 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-
         <dependency>
             <groupId>m3</groupId>
             <artifactId>m3-lib</artifactId>
@@ -66,15 +65,11 @@
             <version>${org.liquibase.version}</version>
         </dependency>
 
-        <!-- test -->
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
-        <!-- test containers -->
 
         <dependency>
             <groupId>org.testcontainers</groupId>

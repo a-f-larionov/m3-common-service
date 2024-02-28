@@ -1,5 +1,6 @@
 package m3.common.listeners;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import m3.common.dto.rq.SendMeTimeRqDto;
@@ -24,23 +25,23 @@ public class TopicCommonListener {
     private final CommonService commonService;
 
     @KafkaHandler
-    public void log(LogRqDto rq) {
+    public void log(@Valid LogRqDto rq) {
         commonService.log(rq.getLevel(), rq.getMessage(), rq.getSendToTelegram());
     }
 
     @KafkaHandler
-    public void statistic(StatisticRqDto rq) {
+    public void statistic(@Valid StatisticRqDto rq) {
         commonService.statistic(rq.getUserId(), rq.getStatId(), rq.getParamA(), rq.getParamB());
     }
 
     @KafkaHandler
-    public void saveUserAgent(SendUserAgentRqDto rq) {
+    public void saveUserAgent(@Valid SendUserAgentRqDto rq) {
         commonService.saveUserAgent(rq.getUserId(), rq.getUserAgentString());
     }
 
     @KafkaHandler
     @SendTo("topic-client")
-    public UpdateTimeRsDto sendMeTime(SendMeTimeRqDto rq) {
+    public UpdateTimeRsDto sendMeTime(@Valid SendMeTimeRqDto rq) {
         return commonMapper.toUpdateTimeRsDto(
                 commonService.getCurrentTime(),
                 rq.getConnectionId());

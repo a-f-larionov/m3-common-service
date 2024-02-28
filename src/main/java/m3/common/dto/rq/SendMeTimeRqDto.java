@@ -1,6 +1,6 @@
 package m3.common.dto.rq;
 
-
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -11,5 +11,6 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode
 @ToString
 public class SendMeTimeRqDto {
+    @NotNull
     private Long connectionId;
 }

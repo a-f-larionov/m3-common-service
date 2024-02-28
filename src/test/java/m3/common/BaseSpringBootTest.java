@@ -20,7 +20,6 @@ public class BaseSpringBootTest {
                 .withUsername("junit_user")
                 .withPassword("junit_password")
                 .withReuse(true);
-        mySQLContainer.addExposedPort(33306);
         mySQLContainer.start();
     }
 
