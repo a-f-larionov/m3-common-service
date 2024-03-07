@@ -1,7 +1,7 @@
 package m3.common.services.functional;
 
 import m3.common.BaseSpringBootTest;
-import m3.common.services.impl.CommonServiceImpl;
+import m3.common.services.CommonService;
 import m3.lib.enums.ClientLogLevels;
 import m3.lib.enums.StatisticEnum;
 import org.junit.jupiter.api.Test;
@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class UserServiceFuncTest extends BaseSpringBootTest {
 
     @Autowired
-    CommonServiceImpl service;
+    CommonService service;
     @Autowired
     JdbcTemplate jdbcTemplate;
 
