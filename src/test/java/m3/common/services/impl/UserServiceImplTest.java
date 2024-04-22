@@ -18,19 +18,6 @@ public class UserServiceImplTest {
 
     private final CommonService service = new CommonServiceImpl(userAgentRepository, userAgentMapper);
 
-
-    @Test
-    void log() {
-        // do not remove it
-        // and see m3.common.services.functional.UserServiceFuncTest.log
-    }
-
-    @Test
-    void statistic() {
-        // do not remove it
-        // see m3.common.services.functional.UserServiceFuncTest.statistic
-    }
-
     @Test
     void getCurrentTime() {
         // given - when

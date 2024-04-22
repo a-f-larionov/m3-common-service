@@ -1,9 +1,7 @@
-CREATE TABLE IF NOT EXISTS `user_agents`
+create table if not exists user_agents
 (
-    `id`    int(11) unsigned NOT NULL AUTO_INCREMENT,
-    `uid`   int(11)          NOT NULL,
-    `agent` varchar(512)     NOT NULL DEFAULT '',
-    PRIMARY KEY (`id`)
-)
-    ENGINE = InnoDB
-    DEFAULT CHARSET = utf8;
+    id    bigserial       not null,
+    uid   bigint       not null,
+    agent varchar(512) not null default '',
+    primary key (id)
+);

@@ -1,14 +1,14 @@
-CREATE TABLE IF NOT EXISTS `users`
+create table users
 (
-    `id`               int unsigned NOT NULL AUTO_INCREMENT,
-    `socNetUserId`     int unsigned NOT NULL,
-    `socNetTypeId`     int unsigned NOT NULL,
-    `create_tm`        int unsigned          DEFAULT NULL,
-    `login_tm`         int unsigned          DEFAULT NULL,
-    `logout_tm`        int unsigned          DEFAULT NULL,
-    `nextPointId`      int unsigned NOT NULL DEFAULT '1',
-    `fullRecoveryTime` int unsigned          DEFAULT NULL,
-    PRIMARY KEY (`id`),
-    KEY `socNetUniqueKey` (`socNetUserId`, `socNetTypeId`)
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
+    id               bigserial not null,
+    socNetUserId     bigint null,
+    socNetTypeId     bigint    not null,
+    create_tm        bigint             default null,
+    login_tm         bigint             default null,
+    logout_tm        bigint             default null,
+    nextPointId      bigint    not null default '1',
+    fullRecoveryTime bigint             default null,
+    primary key (id)
+);
+
+create index users_socNetUniqueKey on users (socNetUserId, socNetTypeId);

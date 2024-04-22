@@ -79,14 +79,14 @@ public class UserServiceFuncTest extends BaseSpringBootTest {
         // given
         final var userId = 123L;
         final var userAgentString = "user-agent-string";
-        jdbcTemplate.update("DELETE FROM `user_agents` WHERE uid BETWEEN -1 AND 1000000000000000000");
+        jdbcTemplate.update("delete from user_agents where uid between -1 AND 1000000000000000000");
 
         // when
         service.saveUserAgent(userId, userAgentString);
 
         // then
-        final var data = jdbcTemplate.queryForMap("SELECT * FROM `user_agents`");
-        assertEquals(userId, Long.valueOf((Integer) data.get("uid")));
+        final var data = jdbcTemplate.queryForMap("SELECT * FROM user_agents");
+        assertEquals(userId, (Long) data.get("uid"));
         assertEquals(userAgentString, data.get("agent"));
     }
 
