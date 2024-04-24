@@ -14,7 +14,6 @@ spring:
     bootstrap-servers: kafka:9092
     consumer:
       trusted_packages: "m3.common.dto.rq, m3.lib.dto.rq, m3.game.dto.rq"
-    topicName: 'topic-common'
 
   jpa:
     hibernate:

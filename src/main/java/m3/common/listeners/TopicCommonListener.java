@@ -18,7 +18,8 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @Component
 @Slf4j
-@KafkaListener(topics = "topic-common")
+@KafkaListener(topics = "#{topicNames.currentTopic}")
+@SendTo("#{topicNames.CLIENT}")
 public class TopicCommonListener {
 
     private final CommonMapper commonMapper;
@@ -40,7 +41,6 @@ public class TopicCommonListener {
     }
 
     @KafkaHandler
-    @SendTo("topic-client")
     public UpdateTimeRsDto sendMeTime(@Valid SendMeTimeRqDto rq) {
         return commonMapper.toUpdateTimeRsDto(
                 commonService.getCurrentTime(),
