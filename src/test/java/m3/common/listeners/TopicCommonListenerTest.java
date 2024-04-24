@@ -10,18 +10,25 @@ import m3.lib.dto.rq.StatisticRqDto;
 import m3.lib.enums.ClientLogLevels;
 import m3.lib.enums.StatisticEnum;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 public class TopicCommonListenerTest {
-
-    private final CommonServiceImpl service = Mockito.mock(CommonServiceImpl.class);
-    private final CommonMapper mapper = Mockito.mock(CommonMapper.class);
-    private final TopicCommonListener listener = new TopicCommonListener(mapper, service);
+    @Mock
+    private CommonServiceImpl service;
+    @Mock
+    private CommonMapper mapper;
+    @InjectMocks
+    private TopicCommonListener listener;
 
     @Test
     void log() {
