@@ -22,7 +22,6 @@
         <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
         <org.projectlombok.version>1.18.30</org.projectlombok.version>
         <com.fasterxml.jackson.core.version>2.16.0</com.fasterxml.jackson.core.version>
-        <org.liquibase.version>4.25.0</org.liquibase.version>
         <m3.m3-lib.version>1.0-SNAPSHOT</m3.m3-lib.version>
 
         <maven.install.skip>true</maven.install.skip>
@@ -52,7 +51,6 @@
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
-            <version>${org.liquibase.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
